@@ -4,7 +4,7 @@ import * as pulumi from "@pulumi/pulumi";
 const config = new pulumi.Config();
 const isDomainReady = config.getBoolean("domainReady") ?? false;
 
-const certificate = new aws.acm.Certificate("site", {
+const certificate = new aws.acm.Certificate("site-certificate", {
   domainName: "pivatto.dev",
   subjectAlternativeNames: ["www.pivatto.dev"],
   validationMethod: "DNS",
