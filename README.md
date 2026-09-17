@@ -12,7 +12,9 @@ The site presents professional experience, selected projects, education, and way
 - GSAP and Lenis for motion and scrolling
 - Lucide and Simple Icons
 
-The portfolio is a static client-side application. It has no backend, hosting integration, or runtime requests to GitHub.
+The portfolio is a static client-side application. It has no backend or runtime requests to GitHub.
+
+Production hosting uses AWS S3 and CloudFront. The site infrastructure, GitHub Actions workflow, and first deployment steps are documented in [`infra/README.md`](infra/README.md).
 
 ## Run locally
 
@@ -27,6 +29,7 @@ Vite prints the local address in the terminal. To preview a production build:
 
 ```sh
 npm run build
+npm run infra:typecheck
 npm run preview -- --host 127.0.0.1
 ```
 

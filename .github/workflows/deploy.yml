@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run infra:typecheck
+      - run: npm run build
+      - uses: pulumi/actions@v6
+        with:
+          pulumi-version: 3.263.0
+      - name: Apply site infrastructure
+        working-directory: infra/site
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          PULUMI_ORG: ${{ vars.PULUMI_ORG }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+        run: |
+          stack="$PULUMI_ORG/portfolio-site/production"
+          pulumi stack select --create "$stack"
+          pulumi up --yes --non-interactive --stack "$stack"
+          pulumi stack output certificateValidationRecords --json --stack "$stack"
+          echo "BUCKET_NAME=$(pulumi stack output bucketName --stack "$stack")" >> "$GITHUB_ENV"
+          echo "DISTRIBUTION_ID=$(pulumi stack output distributionId --stack "$stack")" >> "$GITHUB_ENV"
+          echo "DISTRIBUTION_DOMAIN=$(pulumi stack output distributionDomain --stack "$stack")" >> "$GITHUB_ENV"
+          echo "SITE_DOMAIN=$(pulumi stack output siteDomain --stack "$stack")" >> "$GITHUB_ENV"
+      - name: Publish static files
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        run: bash scripts/publish-site.sh "$BUCKET_NAME" "$DISTRIBUTION_ID"
+      - name: Check deployed site
+        run: bash scripts/smoke-site.sh "$DISTRIBUTION_DOMAIN" "$SITE_DOMAIN"
