@@ -42,16 +42,16 @@ export interface Education {
 export const profile: Profile = {
 	name: "Guilherme Pivatto",
 	role: "Software Engineer",
-	focus: "Full-Stack & distributed systems",
+	focus: "Full-stack engineering & distributed systems",
 	introduction:
-		"I build backend systems, integrate platforms, and evolve cloud infrastructure. From architectural decisions to the software running in production.",
+		"I build full-stack products, integrate platforms, and work on cloud infrastructure. From interfaces and APIs to software in production.",
 	location: "São Leopoldo, Brazil",
 	email: "mail+jobs@pivatto.dev",
 	github: "https://github.com/pivattogui",
 	linkedin: "https://www.linkedin.com/in/guilherme-pivatto/",
 	resume: "https://rxresu.me/pivatto/resume-en",
 	about: [
-		"I’m a software engineer with 4.5 years of experience in backend development, APIs, and distributed systems. My work spans architecture, implementation, and production operations, primarily with Node.js, Go, and AWS.",
+		"I’m a software engineer with 4.5 years of experience in full-stack development, APIs, and distributed systems. My work spans architecture, implementation, and production operations, primarily with Node.js, Go, and AWS.",
 		"I’ve helped evolve a B2B SaaS platform, leading technical decisions across infrastructure and integrations. My experience also includes frontend development and AI-powered customer service agents.",
 	],
 };
@@ -63,7 +63,7 @@ export const experience: Experience[] = [
 		role: "Software Engineer",
 		period: "Jan 2022 — Jun 2026",
 		summary:
-			"Full-stack engineering with a focus on backend, messaging, integrations, and infrastructure, from technical definition to production.",
+			"Full-stack engineering across product interfaces, backend, messaging, integrations, and infrastructure.",
 		highlights: [
 			"Led an AWS ECS architecture migration from 400 services to 15, with estimated annual infrastructure savings of US$126,000, and rebuilt the infrastructure as code.",
 			"Designed and built a distributed omnichannel platform in three months, implementing backend, messaging, and infrastructure for 450 customers and 700,000 daily messages.",
