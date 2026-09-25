@@ -111,12 +111,14 @@ export function usePortfolioMotion(pageRef: RefObject<HTMLDivElement | null>) {
           const heading = section.querySelector("h2");
           const headingDetails = section.querySelectorAll(".section-index, .section-note, .projects-heading p, .projects-heading > a");
           if (heading) revealOnScroll(heading, heading);
-          headingDetails.forEach((detail) => revealOnScroll(detail, detail));
+          headingDetails.forEach((detail) => {
+            if (detail !== heading) revealOnScroll(detail, detail);
+          });
 
-          section.querySelectorAll(".prose, .skill-band, .experience-shell, .education-row, .contact-bottom, .social-links")
+          section.querySelectorAll(".prose, .skill-band, .experience-entry, .education-row, .contact-bottom, .social-links")
             .forEach((element) => revealOnScroll(element, element));
 
-          section.querySelectorAll(".highlights").forEach((list) => {
+          section.querySelectorAll(".experience-highlights").forEach((list) => {
             const entries = list.querySelectorAll(":scope > li");
             if (entries.length) revealOnScroll(entries, list, 0.12);
           });

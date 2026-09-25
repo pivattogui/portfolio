@@ -17,7 +17,10 @@ export interface Experience {
 	role: string;
 	period: string;
 	summary: string;
-	highlights: string[];
+	chapters: Array<{
+		title: string;
+		highlights: string[];
+	}>;
 }
 
 export interface Project {
@@ -63,13 +66,30 @@ export const experience: Experience[] = [
 		role: "Software Engineer",
 		period: "Jan 2022 — Jun 2026",
 		summary:
-			"Full-stack engineering across product interfaces, backend, messaging, integrations, and infrastructure.",
-		highlights: [
-			"Led an AWS ECS architecture migration from 400 services to 15, with estimated annual infrastructure savings of US$126,000, and rebuilt the infrastructure as code.",
-			"Designed and built a distributed omnichannel platform in three months, implementing backend, messaging, and infrastructure for 450 customers and 700,000 daily messages.",
-			"Led official WhatsApp Business and Instagram integrations, including Meta App Review and event processing.",
-			"Replaced manual deployments with GitHub Actions pipelines for tests, builds, gradual provisioning, and deployment to AWS ECS.",
-			"Built customer service agents in Python with RAG and tool calling, integrated with CRM and inbox workflows, and developed post-conversation evaluations.",
+			"Helped evolve a B2B SaaS platform from its MVP into a distributed omnichannel product, working from technical definition through production operations.",
+		chapters: [
+			{
+				title: "Scale & reliability",
+				highlights: [
+					"Consolidated AWS ECS from 400 services to 15, cutting the service count by 96.25% and saving an estimated US$126,000 annually; rebuilt the infrastructure as code.",
+					"Rebuilt the distributed platform with a six-person team using Kafka, Elixir, and Go; reached the first customers in three months and now handles 700,000 messages daily.",
+					"Replaced manual deployments with GitHub Actions pipelines for tests, builds, gradual provisioning, and AWS ECS releases.",
+				],
+			},
+			{
+				title: "Product & market",
+				highlights: [
+					"Expanded the product beyond messaging with automation, CRM, visual workflows, healthcare integrations, and service analytics used by about 450 customers.",
+					"Led official WhatsApp Business and Instagram integrations through Meta App Review, turning a WhatsApp-only product into an omnichannel platform.",
+				],
+			},
+			{
+				title: "AI & developer experience",
+				highlights: [
+					"Created Forge, a multi-agent orchestrator for cross-service changes; project conventions and end-to-end tests improved delivery speed and quality.",
+					"Extended a Python service agent with RAG and tool calling to manage conversations and CRM data; added post-conversation evaluations.",
+				],
+			},
 		],
 	},
 ];

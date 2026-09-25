@@ -6,35 +6,45 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="section"
+      className="section experience-section"
       aria-labelledby="experience-title"
     >
-      <p className="section-index eyebrow">
+      <h2 id="experience-title" className="section-index eyebrow">
         <DecryptedText text={labels.experienceIndex} />
-      </p>
-      <div className="section-heading">
-        <h2 id="experience-title">{labels.experienceTitle}</h2>
-        <p className="section-note">{labels.experienceNote}</p>
-      </div>
+      </h2>
       {experience.map((position) => (
-        <div className="experience-shell" key={`${position.company}-${position.period}`}>
-          <article className="experience-row">
-            <div className="experience-meta">
-              <p className="period">{position.period}</p>
-              <h3>{position.company}</h3>
-              <p>{position.industry}</p>
-            </div>
-            <div className="experience-body">
-              <h3 className="role-title">{position.role}</h3>
-              <p className="experience-summary">{position.summary}</p>
-              <ol className="highlights">
-                {position.highlights.map((highlight, index) => (
-                  <li key={highlight}><span>0{index + 1}</span><p>{highlight}</p></li>
-                ))}
-              </ol>
-            </div>
-          </article>
-        </div>
+        <article className="experience-entry" key={`${position.company}-${position.period}`}>
+          <header className="experience-meta">
+            <p className="period">{position.period}</p>
+            <h3>{position.company}</h3>
+            <p>{position.industry}</p>
+          </header>
+          <div className="experience-body">
+            <h3 className="role-title">{position.role}</h3>
+            <p className="experience-summary">{position.summary}</p>
+          </div>
+          <div className="experience-chapters">
+            {position.chapters.map((chapter, chapterIndex) => {
+              const chapterOffset = position.chapters
+                .slice(0, chapterIndex)
+                .reduce((total, previousChapter) => total + previousChapter.highlights.length, 0);
+
+              return (
+                <section className="experience-chapter" key={chapter.title}>
+                  <p className="experience-chapter-title">{chapter.title}</p>
+                  <ol className="experience-highlights" start={chapterOffset + 1}>
+                    {chapter.highlights.map((highlight, highlightIndex) => (
+                      <li key={highlight}>
+                        <span aria-hidden="true">{String(chapterOffset + highlightIndex + 1).padStart(2, "0")}</span>
+                        <p>{highlight}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              );
+            })}
+          </div>
+        </article>
       ))}
     </section>
   );

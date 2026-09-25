@@ -20,13 +20,30 @@ const portugueseExperience: Experience[] = [{
   industry: "Tecnologia em saúde · SaaS B2B",
   role: "Engenheiro de software",
   period: "Jan 2022 — Jun 2026",
-  summary: "Engenharia full-stack em interfaces, backend, mensageria, integrações e infraestrutura.",
-  highlights: [
-    "Liderei a migração da arquitetura AWS ECS de 400 serviços para 15, com economia anual estimada de US$ 126 mil em infraestrutura, e reconstruí a infraestrutura como código.",
-    "Projetei e construí uma plataforma omnichannel distribuída em três meses, implementando backend, mensageria e infraestrutura para 450 clientes e 700 mil mensagens diárias.",
-    "Liderei integrações oficiais com WhatsApp Business e Instagram, incluindo a revisão de aplicativo pela Meta e o processamento de eventos.",
-    "Substituí deploys manuais por pipelines do GitHub Actions para testes, builds, provisionamento gradual e implantação no AWS ECS.",
-    "Desenvolvi agentes de atendimento em Python com RAG e chamadas de ferramentas, integrados ao CRM e ao fluxo de atendimento, além de avaliações pós-conversa.",
+  summary: "Ajudei a levar uma plataforma SaaS B2B do MVP a um produto omnichannel distribuído, atuando da definição técnica à operação em produção.",
+  chapters: [
+    {
+      title: "Escala e confiabilidade",
+      highlights: [
+        "Consolidei a arquitetura AWS ECS de 400 serviços para 15, uma redução de 96,25% e economia anual estimada de US$ 126 mil; reconstruí a infraestrutura como código.",
+        "Reconstruí a plataforma distribuída com uma equipe de seis pessoas usando Kafka, Elixir e Go; ela chegou aos primeiros clientes em três meses e hoje processa 700 mil mensagens diárias.",
+        "Substituí deploys manuais por pipelines do GitHub Actions para testes, builds, provisionamento gradual e releases no AWS ECS.",
+      ],
+    },
+    {
+      title: "Produto e mercado",
+      highlights: [
+        "Levei o produto além da troca de mensagens com automação, CRM, fluxos visuais, integrações de saúde e análise de atendimento para cerca de 450 clientes.",
+        "Liderei integrações oficiais com WhatsApp Business e Instagram até a aprovação no App Review, transformando um produto restrito ao WhatsApp em uma plataforma omnichannel.",
+      ],
+    },
+    {
+      title: "IA e experiência de desenvolvimento",
+      highlights: [
+        "Criei o Forge, um orquestrador multiagente para mudanças entre serviços; padrões de projeto e testes end-to-end melhoraram a velocidade e a qualidade das entregas.",
+        "Ampliei um agente de atendimento em Python com RAG e chamadas de ferramentas para gerenciar conversas e dados do CRM; adicionei avaliações pós-conversa.",
+      ],
+    },
   ],
 }];
 
@@ -79,7 +96,7 @@ const englishLabels = {
   aboutIndex: "01 / About", aboutTitle: ["From code", "to production."], yearsCount: "4.5+", years: "Years shaping reliable software products",
   skillsLabel: "Areas of practice / Selected tools", skillsTitle: ["Built across the stack.", "Owned in production."],
   skillsAreas: "Full-stack development · Cloud & operations · Applied AI", scrollExplore: "Scroll to explore →", skillsAria: "Technologies I work with",
-  experienceIndex: "02 / Experience", experienceTitle: "Built in the real world.", experienceNote: "Full-stack · infrastructure · integrations",
+  experienceIndex: "02 / Experience",
   projectsIndex: "03 / Selected projects", projectsTitle: "Selected projects.", projectsIntro: "Full-stack applications and APIs for operating game servers, transforming configuration data, and resolving short links.",
   allRepositories: "All repositories", viewRepository: "View repository", liveDemo: "Live demo", technologies: "technologies",
   educationIndex: "04 / Education", educationTitle: ["Foundations for", "what I build."],
@@ -95,7 +112,7 @@ const portugueseLabels: { [K in keyof typeof englishLabels]: typeof englishLabel
   aboutIndex: "01 / Sobre", aboutTitle: ["Do código à", "produção."], yearsCount: "4,5+", years: "Anos construindo produtos de software confiáveis",
   skillsLabel: "Áreas de atuação / Ferramentas", skillsTitle: ["Atuação em toda a stack.", "Responsabilidade em produção."],
   skillsAreas: "Desenvolvimento full-stack · Nuvem e operações · IA aplicada", scrollExplore: "Role para explorar →", skillsAria: "Tecnologias com que trabalho",
-  experienceIndex: "02 / Experiência", experienceTitle: "Experiência em produção.", experienceNote: "Full-stack · infraestrutura · integrações",
+  experienceIndex: "02 / Experiência",
   projectsIndex: "03 / Projetos selecionados", projectsTitle: "Projetos selecionados.", projectsIntro: "Aplicações full-stack e APIs para operar servidores de jogos, transformar dados de configuração e resolver links curtos.",
   allRepositories: "Todos os repositórios", viewRepository: "Ver repositório", liveDemo: "Demonstração", technologies: "tecnologias",
   educationIndex: "04 / Formação", educationTitle: ["As bases do", "que construo."],
