@@ -5,13 +5,13 @@ export type Locale = "en" | "pt";
 const portugueseProfile: Profile = {
   ...profile,
   role: "Engenheiro de software",
-  focus: "Full-stack e sistemas distribuídos",
-  introduction: "Desenvolvo produtos full-stack, integro plataformas e trabalho com infraestrutura em nuvem. Da interface e das APIs ao software em produção.",
+  focus: "IA aplicada e sistemas de software",
+  introduction: "Desenvolvo produtos com IA e sistemas de software que sustentam operações reais. Combino domínio de IA aplicada, visão de produto e engenharia de sistemas para criar soluções úteis, confiáveis e prontas para crescer.",
   location: "São Leopoldo, Brasil",
   resume: "https://rxresu.me/pivatto/resume-pt",
   about: [
-    "Sou engenheiro de software com 4,5 anos de experiência em desenvolvimento full-stack, APIs e sistemas distribuídos. Trabalho da arquitetura à operação em produção, principalmente com Node.js, Go e AWS.",
-    "Ajudei a evoluir uma plataforma SaaS B2B, liderando decisões técnicas de infraestrutura e integrações. Minha experiência também inclui desenvolvimento frontend e agentes de atendimento com IA.",
+    "Sou engenheiro de software especializado em IA aplicada. Desenvolvo produtos de ponta a ponta, combinando visão de produto, engenharia de sistemas e profundidade técnica para transformar problemas complexos em software útil e pronto para produção.",
+    "Minha atuação reúne experiência em produtos de escala e uma prática contínua de projetos independentes. Exploro novas tecnologias, construo ferramentas próprias e levo iniciativas de IA da ideia à produção, sempre com foco no valor que o software entrega.",
   ],
 };
 
@@ -83,37 +83,48 @@ const portugueseProjects: Project[] = [
 ];
 
 const portugueseEducation: Education[] = [
-  { ...education[0], degree: "Bacharelado em Sistemas de Informação", period: "2021 — Atualmente", note: "Previsão de conclusão: 2027" },
-  { ...education[1], degree: "Curso técnico em Tecnologia da Informação" },
+  {
+    ...education[0],
+    degree: "Bacharelado em Sistemas de Informação",
+    period: "Fev 2021 — Jun 2027",
+    description: "Comecei a graduação em Ciência da Computação e migrei para Sistemas de Informação para aproximar engenharia de software, produto e negócio. O curso acrescentou processos organizacionais, gestão e o papel da tecnologia nas decisões a uma base técnica construída com Java, C#, C, bancos de dados e desenvolvimento web.",
+    note: "Previsão de conclusão",
+  },
+  {
+    ...education[1],
+    degree: "Curso técnico integrado em Informática",
+    period: "Fev 2019 — Dez 2021",
+    description: "Construí minha base em programação, desenvolvimento web, bancos de dados e redes. No TCC, desenvolvi o MVP para iOS e Android da TranspoLife, uma startup de transporte de cargas apresentada a uma banca de investidores, usando React Native, TypeScript, MySQL, WebSockets, Firebase e APIs do Google Maps.",
+  },
 ];
 
 const englishLabels = {
-  skip: "Skip to content", backToTop: "Back to top ↑", headerDiscipline: "Software engineering / systems",
+  skip: "Skip to content", backToTop: "Back to top ↑", headerDiscipline: "Applied AI / distributed systems",
   navigation: ["About", "Experience", "Projects", "Contact"], mainNavigation: "Main navigation", mobileNavigation: "Mobile navigation",
   openMenu: "Open menu", closeMenu: "Close menu", availability: "São Leopoldo, Brazil · Available worldwide",
-  portfolio: "Portfolio", heroTitle: ["Software", "engineer."], specialty: ["Full-stack development", "Integrations", "Cloud infrastructure"],
+  portfolio: "Portfolio", heroTitle: ["Software", "engineer."], specialty: ["Applied AI", "Product engineering", "Distributed systems"],
   contactAction: "Get in touch", resume: "Résumé", moreAbout: "More about me", profiles: "Guilherme's profiles",
-  aboutIndex: "01 / About", aboutTitle: ["From code", "to production."], yearsCount: "4.5+", years: "Years shaping reliable software products",
-  skillsLabel: "Areas of practice / Selected tools", skillsTitle: ["Built across the stack.", "Owned in production."],
-  skillsAreas: "Full-stack development · Cloud & operations · Applied AI", scrollExplore: "Scroll to explore →", skillsAria: "Technologies I work with",
+  aboutIndex: "01 / About", aboutTitle: ["From product problem", "to production."], yearsCount: "4.5+", years: "Years turning product problems into production systems",
+  skillsLabel: "Areas of practice / Selected tools", skillsTitle: ["Product thinking.", "Systems depth."],
+  skillsAreas: "Applied AI · Full-stack development · Cloud & operations", scrollExplore: "Scroll to explore →", skillsAria: "Technologies I work with",
   experienceIndex: "02 / Experience",
-  projectsIndex: "03 / Selected projects", projectsTitle: "Selected projects.", projectsIntro: "Full-stack applications and APIs for operating game servers, transforming configuration data, and resolving short links.",
+  projectsIndex: "03 / Selected projects", projectsTitle: "Selected projects.", projectsIntro: "Independent products where I turn personal interests into working software, explore new ideas, and keep expanding my technical range.",
   allRepositories: "All repositories", viewRepository: "View repository", liveDemo: "Live demo", technologies: "technologies",
   educationIndex: "04 / Education", educationTitle: ["Foundations for", "what I build."],
   contactIndex: "05 / Contact", contactTitle: ["Let’s build what", "comes next."], contactIntro: ["Have a software engineering opportunity?", "Get in touch."], email: "Email", resumePdf: "Résumé",
 } as const;
 
 const portugueseLabels: { [K in keyof typeof englishLabels]: typeof englishLabels[K] extends readonly string[] ? readonly string[] : string } = {
-  skip: "Ir para o conteúdo", backToTop: "Voltar ao topo ↑", headerDiscipline: "Engenharia de software / sistemas",
+  skip: "Ir para o conteúdo", backToTop: "Voltar ao topo ↑", headerDiscipline: "IA aplicada / sistemas distribuídos",
   navigation: ["Sobre", "Experiência", "Projetos", "Contato"], mainNavigation: "Navegação principal", mobileNavigation: "Navegação móvel",
   openMenu: "Abrir menu", closeMenu: "Fechar menu", availability: "São Leopoldo, Brasil · Disponível globalmente",
-  portfolio: "Portfólio", heroTitle: ["Engenheiro", "de software."], specialty: ["Desenvolvimento full-stack", "Integrações", "Infraestrutura em nuvem"],
+  portfolio: "Portfólio", heroTitle: ["Engenheiro", "de software."], specialty: ["IA aplicada", "Engenharia de produto", "Sistemas distribuídos"],
   contactAction: "Entre em contato", resume: "Currículo", moreAbout: "Mais sobre mim", profiles: "Perfis de Guilherme",
-  aboutIndex: "01 / Sobre", aboutTitle: ["Do código à", "produção."], yearsCount: "4,5+", years: "Anos construindo produtos de software confiáveis",
-  skillsLabel: "Áreas de atuação / Ferramentas", skillsTitle: ["Atuação em toda a stack.", "Responsabilidade em produção."],
-  skillsAreas: "Desenvolvimento full-stack · Nuvem e operações · IA aplicada", scrollExplore: "Role para explorar →", skillsAria: "Tecnologias com que trabalho",
+  aboutIndex: "01 / Sobre", aboutTitle: ["Do problema de produto", "à produção."], yearsCount: "4,5+", years: "Anos transformando problemas de produto em sistemas em produção",
+  skillsLabel: "Áreas de atuação / Ferramentas", skillsTitle: ["Visão de produto.", "Profundidade técnica."],
+  skillsAreas: "IA aplicada · Desenvolvimento full-stack · Nuvem e operações", scrollExplore: "Role para explorar →", skillsAria: "Tecnologias com que trabalho",
   experienceIndex: "02 / Experiência",
-  projectsIndex: "03 / Projetos selecionados", projectsTitle: "Projetos selecionados.", projectsIntro: "Aplicações full-stack e APIs para operar servidores de jogos, transformar dados de configuração e resolver links curtos.",
+  projectsIndex: "03 / Projetos selecionados", projectsTitle: "Projetos selecionados.", projectsIntro: "Produtos independentes em que transformo interesses pessoais em software funcional, exploro novas ideias e amplio continuamente meu repertório técnico.",
   allRepositories: "Todos os repositórios", viewRepository: "Ver repositório", liveDemo: "Demonstração", technologies: "tecnologias",
   educationIndex: "04 / Formação", educationTitle: ["As bases do", "que construo."],
   contactIndex: "05 / Contato", contactTitle: ["Vamos construir", "o que vem a seguir."], contactIntro: ["Tem uma oportunidade em engenharia de software?", "Entre em contato."], email: "E-mail", resumePdf: "Currículo",

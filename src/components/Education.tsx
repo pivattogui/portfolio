@@ -24,6 +24,7 @@ export function Education() {
             <div className="education-row-inner">
               <p className="education-institution">{qualification.institution}</p>
               <h3>{qualification.degree}</h3>
+              <p className="education-description">{qualification.description}</p>
               <div className="education-details">
                 <p className="period">{qualification.period}</p>
                 {qualification.note && <p>{qualification.note}</p>}

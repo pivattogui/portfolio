@@ -39,23 +39,24 @@ export interface Education {
 	institution: string;
 	degree: string;
 	period: string;
+	description: string;
 	note?: string;
 }
 
 export const profile: Profile = {
 	name: "Guilherme Pivatto",
 	role: "Software Engineer",
-	focus: "Full-stack engineering & distributed systems",
+	focus: "Applied AI & software systems",
 	introduction:
-		"I build full-stack products, integrate platforms, and work on cloud infrastructure. From interfaces and APIs to software in production.",
+		"I build AI-powered products and software systems that support real operations. I combine applied AI expertise with product judgment and systems engineering to create useful, reliable solutions built to grow.",
 	location: "São Leopoldo, Brazil",
 	email: "mail+jobs@pivatto.dev",
 	github: "https://github.com/pivattogui",
 	linkedin: "https://www.linkedin.com/in/guilherme-pivatto/",
 	resume: "https://rxresu.me/pivatto/resume-en",
 	about: [
-		"I’m a software engineer with 4.5 years of experience in full-stack development, APIs, and distributed systems. My work spans architecture, implementation, and production operations, primarily with Node.js, Go, and AWS.",
-		"I’ve helped evolve a B2B SaaS platform, leading technical decisions across infrastructure and integrations. My experience also includes frontend development and AI-powered customer service agents.",
+		"I’m a software engineer specialized in applied AI. I build products end to end, combining product judgment, systems engineering, and technical depth to turn complex problems into useful software that is ready for production.",
+		"My work brings together experience with products at scale and an ongoing practice of building independent projects. I explore new technologies, create my own tools, and take AI initiatives from idea to production with a clear focus on the value the software delivers.",
 	],
 };
 
@@ -167,12 +168,16 @@ export const education: Education[] = [
 	{
 		institution: "Unisinos",
 		degree: "Bachelor’s degree in Information Systems",
-		period: "2021 — Present",
-		note: "Expected graduation: 2027",
+		period: "Feb 2021 — Jun 2027",
+		description:
+			"I started in Computer Science and moved to Information Systems to connect software engineering with product and business. The degree added organizational processes, management, and the role of technology in decision-making to a technical foundation built across Java, C#, C, databases, and web development.",
+		note: "Expected graduation",
 	},
 	{
-		institution: "Colégio Concórdia",
-		degree: "Technical diploma in Information Technology",
-		period: "2019 — 2021",
+		institution: "Colégio Luterano Concórdia",
+		degree: "Integrated technical diploma in Information Technology",
+		period: "Feb 2019 — Dec 2021",
+		description:
+			"I built my foundation in programming, web development, databases, and networking. For the final project, I developed the iOS and Android MVP for TranspoLife, a freight startup presented to a panel of investors, using React Native, TypeScript, MySQL, WebSockets, Firebase, and Google Maps APIs.",
 	},
 ];

@@ -244,6 +244,8 @@ export const Plasma: React.FC<PlasmaProps> = ({
     let contextLost = false;
     let isVisible = true;
     let tabVisible = document.visibilityState !== 'hidden';
+    let isPageScrolling = false;
+    let resumeTimer = 0;
     const t0 = performance.now();
     const frameInterval = 1000 / targetFps;
     let lastFrameTime = 0;
@@ -254,7 +256,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
     };
 
     const loop = (t: number) => {
-      if (contextLost || !isVisible || !tabVisible) return;
+      if (contextLost || !isVisible || !tabVisible || isPageScrolling) return;
 
       if (t - lastFrameTime < frameInterval) {
         raf = requestAnimationFrame(loop);
@@ -324,6 +326,20 @@ export const Plasma: React.FC<PlasmaProps> = ({
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
+    const handlePageScroll = () => {
+      isPageScrolling = true;
+      cancelAnimationFrame(raf);
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => {
+        isPageScrolling = false;
+        lastFrameTime = 0;
+        if (!contextLost && isVisible && tabVisible && !prefersReducedMotion) {
+          raf = requestAnimationFrame(loop);
+        }
+      }, 140);
+    };
+    window.addEventListener('scroll', handlePageScroll, { passive: true });
+
     // Respect prefers-reduced-motion: paint one frame and stop, rather than running a perpetual animation loop for users who've asked not to see motion.
     if (prefersReducedMotion) {
       renderStaticFrame();
@@ -333,9 +349,11 @@ export const Plasma: React.FC<PlasmaProps> = ({
 
     return () => {
       cancelAnimationFrame(raf);
+      window.clearTimeout(resumeTimer);
       ro.disconnect();
       io.disconnect();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('scroll', handlePageScroll);
       canvas.removeEventListener('webglcontextlost', handleContextLost);
       canvas.removeEventListener('webglcontextrestored', handleContextRestored);
       if (mouseInteractive && containerEl) {

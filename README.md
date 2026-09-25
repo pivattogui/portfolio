@@ -1,6 +1,6 @@
 # Guilherme Pivatto
 
-Personal portfolio for Guilherme Pivatto, a software engineer focused on backend development, distributed systems, API integrations, and cloud infrastructure.
+Personal portfolio for Guilherme Pivatto, a software engineer specialized in applied AI, product engineering, and distributed systems.
 
 The site presents professional experience, selected projects, education, and ways to get in touch. It is available in English and Brazilian Portuguese, with English selected by default.
 
