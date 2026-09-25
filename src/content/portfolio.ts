@@ -33,6 +33,12 @@ export interface Project {
 	repository: string;
 	demo?: string;
 	image?: { src: string; alt: string; caption: string };
+	architecture?: {
+		ariaLabel: string;
+		stages: Array<{ label: string; detail: string }>;
+		status: string;
+		caption: string;
+	};
 }
 
 export interface Education {
@@ -114,6 +120,35 @@ export const projects: Project[] = [
 			src: "/projects/allay-console.webp",
 			alt: "Allay console with server metrics, live logs, and command input",
 			caption: "Allay interface · live console and server metrics",
+		},
+	},
+	{
+		name: "pivatto.dev",
+		category: "Portfolio & cloud delivery",
+		description:
+			"A bilingual portfolio designed as a focused product: it turns engineering decisions, production outcomes, and independent work into a clear professional narrative.",
+		technicalOverview:
+			"React and TypeScript keep the experience fast and content-driven, while Pulumi defines the complete AWS delivery path. The static build is served from a private S3 bucket through CloudFront, with Origin Access Control, managed TLS, immutable asset caching, and automated publication from GitHub Actions.",
+		technicalHighlights: [
+			"Infrastructure, application checks, deployment, cache invalidation, and production smoke tests live in the same repository and delivery workflow.",
+			"The release strategy uploads versioned assets first and index.html last, reducing the chance of a page referencing assets that are not yet available.",
+			"The interface supports English and Brazilian Portuguese, responsive editorial layouts, reduced motion, and progressive enhancement without a runtime backend.",
+		],
+		technologies: ["React", "TypeScript", "Pulumi", "AWS", "GitHub Actions"],
+		repository: "https://github.com/pivattogui/portfolio",
+		demo: "https://pivatto.dev",
+		architecture: {
+			ariaLabel:
+				"Delivery architecture from source code to the portfolio visitor",
+			stages: [
+				{ label: "Source", detail: "React + Pulumi" },
+				{ label: "Delivery", detail: "GitHub Actions" },
+				{ label: "Origin", detail: "Private S3" },
+				{ label: "Edge", detail: "CloudFront + TLS" },
+			],
+			status: "Production delivery verified",
+			caption:
+				"One repository · product, infrastructure, and release automation",
 		},
 	},
 	{

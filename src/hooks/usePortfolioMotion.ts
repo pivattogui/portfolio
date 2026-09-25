@@ -12,7 +12,7 @@ const revealSelector = [
   ".education-row",
   ".contact-bottom",
   ".social-links",
-  ".project-entry",
+  ".project-showcase",
 ].join(", ");
 
 export function usePortfolioMotion(pageRef: RefObject<HTMLDivElement | null>) {

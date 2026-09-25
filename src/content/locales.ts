@@ -50,6 +50,28 @@ const portugueseExperience: Experience[] = [{
 const portugueseProjects: Project[] = [
   {
     ...projects[0],
+    category: "Portfólio e entrega em nuvem",
+    description: "Um portfólio bilíngue pensado como produto: transforma decisões de engenharia, resultados em produção e projetos independentes em uma narrativa profissional clara.",
+    technicalOverview: "React e TypeScript mantêm a experiência rápida e orientada a conteúdo, enquanto o Pulumi define todo o caminho de entrega na AWS. O build estático é servido de um bucket S3 privado pelo CloudFront, com Origin Access Control, TLS gerenciado, cache imutável de assets e publicação automatizada pelo GitHub Actions.",
+    technicalHighlights: [
+      "Infraestrutura, validações da aplicação, deploy, invalidação de cache e smoke tests de produção vivem no mesmo repositório e fluxo de entrega.",
+      "A estratégia de release envia primeiro os assets versionados e, por último, o index.html, reduzindo o risco de a página referenciar arquivos ainda indisponíveis.",
+      "A interface oferece inglês e português brasileiro, layouts editoriais responsivos, redução de movimento e progressive enhancement sem backend em runtime.",
+    ],
+    architecture: {
+      ariaLabel: "Arquitetura de entrega do código-fonte até quem acessa o portfólio",
+      stages: [
+        { label: "Código", detail: "React + Pulumi" },
+        { label: "Entrega", detail: "GitHub Actions" },
+        { label: "Origem", detail: "S3 privado" },
+        { label: "Edge", detail: "CloudFront + TLS" },
+      ],
+      status: "Entrega em produção verificada",
+      caption: "Um repositório · produto, infraestrutura e automação de releases",
+    },
+  },
+  {
+    ...projects[1],
     category: "Operação de servidores self-hosted",
     description: "Um painel self-hosted para servidores Minecraft Java que reúne sessões de terminal, gerenciamento de arquivos e backups em uma interface operacional.",
     technicalOverview: "A aplicação Phoenix gerencia processos Java e arquivos em um único nó. Um cliente React separado usa REST para operações e configuração, e Channels para console, estado e métricas em tempo real. Administradores podem provisionar servidores, editar arquivos, agendar backups e restaurar arquivos.",
@@ -58,10 +80,10 @@ const portugueseProjects: Project[] = [
       "As especificações de execução separam a orquestração de processos do Ecto, enquanto o Oban persiste agendamentos de backup e reinicialização.",
       "O acesso a arquivos permanece dentro do diretório de cada servidor, e importações são analisadas antes da extração.",
     ],
-    image: projects[0].image && { ...projects[0].image, alt: "Console do Allay com métricas do servidor, logs em tempo real e entrada de comandos", caption: "Interface do Allay · console e métricas em tempo real" },
+    image: projects[1].image && { ...projects[1].image, alt: "Console do Allay com métricas do servidor, logs em tempo real e entrada de comandos", caption: "Interface do Allay · console e métricas em tempo real" },
   },
   {
-    ...projects[1],
+    ...projects[2],
     category: "API para desenvolvedores",
     description: "Uma API de conversão de JSON para TOML com a lógica de conversão separada da camada HTTP.",
     technicalOverview: "POST /convert recebe JSON e retorna TOML em texto puro. O conversor serializa valores escalares e arrays e, depois, emite objetos aninhados como tabelas TOML. Tabelas muito profundas e arrays de tabelas ficam fora do escopo, deixando explícito o formato suportado.",
@@ -71,7 +93,7 @@ const portugueseProjects: Project[] = [
     ],
   },
   {
-    ...projects[2],
+    ...projects[3],
     category: "API de encurtamento de URLs",
     description: "Um serviço persistente de resolução de URLs com caminhos distintos para criação e redirecionamento de links.",
     technicalOverview: "O Linkify armazena cada URL original com um endereço curto gerado. POST /shorten cria o mapeamento; GET /:shortUrl resolve o endereço e redireciona para o destino. A camada HTTP usa Express e TypeScript, com Prisma para acesso ao banco de dados.",
@@ -109,7 +131,7 @@ const englishLabels = {
   skillsAreas: "Applied AI · Full-stack development · Cloud & operations", scrollExplore: "Scroll to explore →", skillsAria: "Technologies I work with",
   experienceIndex: "02 / Experience",
   projectsIndex: "03 / Selected projects", projectsTitle: "Selected projects.", projectsIntro: "Independent products where I turn personal interests into working software, explore new ideas, and keep expanding my technical range.",
-  allRepositories: "All repositories", viewRepository: "View repository", liveDemo: "Live demo", technologies: "technologies",
+  allRepositories: "All repositories", projectNavigation: "Choose a project", underTheHood: "Under the hood", viewRepository: "View repository", liveDemo: "Live demo", technologies: "technologies",
   educationIndex: "04 / Education", educationTitle: ["Foundations for", "what I build."],
   contactIndex: "05 / Contact", contactTitle: ["Let’s build what", "comes next."], contactIntro: ["Have a software engineering opportunity?", "Get in touch."], email: "Email", resumePdf: "Résumé",
 } as const;
@@ -125,7 +147,7 @@ const portugueseLabels: { [K in keyof typeof englishLabels]: typeof englishLabel
   skillsAreas: "IA aplicada · Desenvolvimento full-stack · Nuvem e operações", scrollExplore: "Role para explorar →", skillsAria: "Tecnologias com que trabalho",
   experienceIndex: "02 / Experiência",
   projectsIndex: "03 / Projetos selecionados", projectsTitle: "Projetos selecionados.", projectsIntro: "Produtos independentes em que transformo interesses pessoais em software funcional, exploro novas ideias e amplio continuamente meu repertório técnico.",
-  allRepositories: "Todos os repositórios", viewRepository: "Ver repositório", liveDemo: "Demonstração", technologies: "tecnologias",
+  allRepositories: "Todos os repositórios", projectNavigation: "Escolha um projeto", underTheHood: "Por dentro do projeto", viewRepository: "Ver repositório", liveDemo: "Demonstração", technologies: "tecnologias",
   educationIndex: "04 / Formação", educationTitle: ["As bases do", "que construo."],
   contactIndex: "05 / Contato", contactTitle: ["Vamos construir", "o que vem a seguir."], contactIntro: ["Tem uma oportunidade em engenharia de software?", "Entre em contato."], email: "E-mail", resumePdf: "Currículo",
 };
