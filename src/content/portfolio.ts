@@ -39,6 +39,18 @@ export interface Project {
 		status: string;
 		caption: string;
 	};
+	preview?: {
+		ariaLabel: string;
+		endpoint: string;
+		inputLabel: string;
+		inputMetric: string;
+		input: string;
+		outputLabel: string;
+		outputMetric: string;
+		output: string;
+		savings: string;
+		caption: string;
+	};
 }
 
 export interface Education {
@@ -153,31 +165,30 @@ export const projects: Project[] = [
 	},
 	{
 		name: "Tomlify",
-		category: "Developer API",
+		category: "AI prompt optimization API",
 		description:
-			"A JSON-to-TOML API with conversion logic kept separate from the HTTP layer.",
+			"An API designed to turn structured JSON context into more compact TOML before it reaches an AI prompt, reducing syntax overhead while keeping the data readable and deterministic.",
 		technicalOverview:
-			"POST /convert accepts JSON and returns plain-text TOML. The converter serializes scalar values and arrays, then emits nested objects as TOML tables. It deliberately stops short of deeply nested tables and arrays of tables, keeping the supported format explicit.",
+			"POST /convert lets applications keep sending familiar JSON while AI models receive a leaner plain-text representation. The converter serializes scalar values and arrays, then emits nested objects as TOML tables. Deeply nested tables and arrays of tables remain outside the supported scope, keeping prompt serialization predictable.",
 		technicalHighlights: [
-			"Phoenix controllers handle the HTTP boundary; the converter owns the format transformation.",
+			"TOML removes part of JSON's structural noise from supported payloads, helping reduce the tokens spent representing prompt context.",
+			"Phoenix controllers own the HTTP boundary while a deterministic converter keeps prompt serialization isolated and testable.",
 			"40 tests exercise conversion, edge cases, and endpoint behavior; a health route supports service checks.",
 		],
 		technologies: ["Elixir", "Phoenix", "REST API"],
 		repository: "https://github.com/pivattogui/tomlify",
-	},
-	{
-		name: "Linkify",
-		category: "URL shortener API",
-		description:
-			"A persistent URL-resolution service with distinct paths for link creation and redirection.",
-		technicalOverview:
-			"Linkify stores each original URL alongside a generated short address. POST /shorten creates the mapping; GET /:shortUrl resolves it on later requests and redirects to the destination. The HTTP layer uses Express and TypeScript, with Prisma for database access.",
-		technicalHighlights: [
-			"The creation and redirect endpoints keep writes separate from lookups.",
-			"Prisma persists URL mappings; UUID generates distinct short-link identifiers.",
-		],
-		technologies: ["TypeScript", "Express", "Prisma", "UUID"],
-		repository: "https://github.com/pivattogui/linkify",
+		preview: {
+			ariaLabel: "AI assistant context converted from application JSON to prompt-ready TOML",
+			endpoint: "POST /convert",
+			inputLabel: "Application JSON",
+			inputMetric: "94 chars",
+			input: `{\n  "assistant": {\n    "role": "support",\n    "language": "pt-BR",\n    "tone": "concise"\n  }\n}`,
+			outputLabel: "Prompt-ready TOML",
+			outputMetric: "64 chars",
+			output: `[assistant]\nrole = "support"\nlanguage = "pt-BR"\ntone = "concise"`,
+			savings: "−32%",
+			caption: "fewer characters, same context, less prompt overhead",
+		},
 	},
 ];
 
