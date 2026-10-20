@@ -90,7 +90,7 @@ export const experience: Experience[] = [
 			{
 				title: "Scale & reliability",
 				highlights: [
-					"Consolidated AWS ECS from 400 services to 15, cutting the service count by 96.25% and saving an estimated US$126,000 annually; rebuilt the infrastructure as code.",
+					"Consolidated AWS ECS from 400 tasks to 15, cutting the service count by 96.25% and saving an estimated US$126,000 annually; rebuilt the infrastructure as code.",
 					"Rebuilt the distributed platform with a six-person team using Kafka, Elixir, and Go; reached the first customers in three months and now handles 700,000 messages daily.",
 					"Replaced manual deployments with GitHub Actions pipelines for tests, builds, gradual provisioning, and AWS ECS releases.",
 				],
@@ -178,7 +178,8 @@ export const projects: Project[] = [
 		technologies: ["Elixir", "Phoenix", "REST API"],
 		repository: "https://github.com/pivattogui/tomlify",
 		preview: {
-			ariaLabel: "AI assistant context converted from application JSON to prompt-ready TOML",
+			ariaLabel:
+				"AI assistant context converted from application JSON to prompt-ready TOML",
 			endpoint: "POST /convert",
 			inputLabel: "Application JSON",
 			inputMetric: "94 chars",
