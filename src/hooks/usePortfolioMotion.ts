@@ -1,4 +1,5 @@
-import { useLayoutEffect, type RefObject } from "react";
+import Lenis from "lenis";
+import { useEffect, useLayoutEffect, useState, type RefObject } from "react";
 
 const revealSelector = [
   ".section h2",
@@ -16,11 +17,34 @@ const revealSelector = [
 ].join(", ");
 
 export function usePortfolioMotion(pageRef: RefObject<HTMLDivElement | null>) {
+  useEffect(() => {
+    const smoothScroll = new Lenis({
+      autoRaf: true,
+      autoToggle: true,
+      anchors: true,
+      smoothWheel: true,
+      syncTouch: false,
+      respectReducedMotion: true,
+    });
+    return () => smoothScroll.destroy();
+  }, []);
+
+  const [isReducedMotion, setIsReducedMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useLayoutEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setIsReducedMotion(preference.matches);
+    updatePreference();
+    preference.addEventListener("change", updatePreference);
+    return () => preference.removeEventListener("change", updatePreference);
+  }, []);
+
   useLayoutEffect(() => {
     const page = pageRef.current;
     if (!page) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const readingProgress = page.querySelector<HTMLElement>(".reading-progress");
     let animationFrame = 0;
 
@@ -39,7 +63,7 @@ export function usePortfolioMotion(pageRef: RefObject<HTMLDivElement | null>) {
     window.addEventListener("resize", requestProgressUpdate, { passive: true });
     requestProgressUpdate();
 
-    if (reducedMotion.matches) {
+    if (isReducedMotion) {
       return () => {
         cancelAnimationFrame(animationFrame);
         window.removeEventListener("scroll", requestProgressUpdate);
@@ -73,5 +97,5 @@ export function usePortfolioMotion(pageRef: RefObject<HTMLDivElement | null>) {
       page.classList.remove("motion-enabled", "motion-ready");
       revealElements.forEach((element) => element.classList.remove("reveal-on-scroll", "is-revealed"));
     };
-  }, [pageRef]);
+  }, [pageRef, isReducedMotion]);
 }

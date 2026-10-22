@@ -48,22 +48,27 @@ export function Skills() {
     const technologySequence = technologySequenceRef.current;
     if (!technologyList || !technologySequence) return;
 
-    let sequenceWidth = technologySequence.offsetWidth + 12;
+    let sequenceWidth = technologySequence.getBoundingClientRect().width + 12;
+    let scrollPosition = sequenceWidth;
     technologyList.scrollLeft = sequenceWidth;
+    let renderedScrollPosition = technologyList.scrollLeft;
 
-    const wrapScroll = () => {
-      if (technologyList.scrollLeft >= sequenceWidth * 2) technologyList.scrollLeft -= sequenceWidth;
-      if (technologyList.scrollLeft < sequenceWidth) technologyList.scrollLeft += sequenceWidth;
+    const advanceTechnologyScroll = (distance: number) => {
+      // Keep fractional progress outside scrollLeft, which can round each write at DPR 1.
+      scrollPosition += technologyList.scrollLeft - renderedScrollPosition + distance;
+      scrollPosition = ((scrollPosition - sequenceWidth) % sequenceWidth + sequenceWidth) % sequenceWidth + sequenceWidth;
+      technologyList.scrollLeft = scrollPosition;
+      renderedScrollPosition = technologyList.scrollLeft;
     };
 
     const scrollTechnologies = (event: WheelEvent) => {
+      if (event.ctrlKey || event.metaKey) return;
       const wheelDistance = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
       let distanceMultiplier = 1;
       if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) distanceMultiplier = 16;
       if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) distanceMultiplier = technologyList.clientWidth;
       event.preventDefault();
-      technologyList.scrollLeft += wheelDistance * distanceMultiplier;
-      wrapScroll();
+      advanceTechnologyScroll(wheelDistance * distanceMultiplier);
     };
 
     let animationFrame = 0;
@@ -72,9 +77,8 @@ export function Skills() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const advanceTechnologies = (currentFrame: number) => {
-      if (previousFrame) technologyList.scrollLeft += Math.min(currentFrame - previousFrame, 64) * .035;
+      if (previousFrame) advanceTechnologyScroll(Math.min(currentFrame - previousFrame, 64) * .035);
       previousFrame = currentFrame;
-      wrapScroll();
       animationFrame = requestAnimationFrame(advanceTechnologies);
     };
 
@@ -94,8 +98,8 @@ export function Skills() {
     });
     const sizeObserver = new ResizeObserver(() => {
       const previousWidth = sequenceWidth;
-      sequenceWidth = technologySequence.offsetWidth + 12;
-      technologyList.scrollLeft += sequenceWidth - previousWidth;
+      sequenceWidth = technologySequence.getBoundingClientRect().width + 12;
+      advanceTechnologyScroll(sequenceWidth - previousWidth);
     });
 
     technologyList.addEventListener("wheel", scrollTechnologies, { passive: false });
@@ -120,7 +124,7 @@ export function Skills() {
         </div>
         <p>{labels.skillsAreas}<br /><span>{labels.scrollExplore}</span></p>
       </div>
-      <div className="skill-marquee" aria-label={labels.skillsAria} ref={technologyListRef} tabIndex={0}>
+      <div className="skill-marquee" aria-label={labels.skillsAria} ref={technologyListRef} tabIndex={0} data-lenis-prevent>
         <div className="skill-marquee-track">
           {[0, 1, 2].map((sequence) => (
             <ul key={sequence} ref={sequence === 1 ? technologySequenceRef : undefined} aria-hidden={sequence !== 1}>

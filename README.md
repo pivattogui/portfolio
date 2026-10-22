@@ -9,7 +9,7 @@ The site presents professional experience, selected projects, education, and way
 - React 19 and TypeScript
 - Vite
 - CSS
-- GSAP and Lenis for motion and scrolling
+- CSS animations and Lenis for motion and scrolling
 - Lucide and Simple Icons
 
 The portfolio is a static client-side application. It has no backend or runtime requests to GitHub.

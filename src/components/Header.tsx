@@ -35,8 +35,8 @@ export function Header() {
           ))}
         </nav>
         <div className="locale-switch" role="group" aria-label={locale === "pt" ? "Idioma" : "Language"}>
-          <button type="button" aria-label="English" aria-pressed={locale === "en"} onClick={() => setLocale("en")}><span aria-hidden="true">🇺🇸</span></button>
-          <button type="button" aria-label="Português" aria-pressed={locale === "pt"} onClick={() => setLocale("pt")}><span aria-hidden="true">🇧🇷</span></button>
+          <button type="button" aria-label="English" aria-pressed={locale === "en"} onClick={() => setLocale("en")}><img src="/flags/us.png" width="18" height="18" alt="" /></button>
+          <button type="button" aria-label="Português" aria-pressed={locale === "pt"} onClick={() => setLocale("pt")}><img src="/flags/br.png" width="18" height="18" alt="" /></button>
         </div>
         <button
           className="menu-toggle"
